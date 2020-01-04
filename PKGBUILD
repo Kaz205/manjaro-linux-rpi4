@@ -4,12 +4,12 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 
 pkgbase=linux-rpi4-mainline
-_commit=e876de2cd6f4cdfa29693e6019736f2ee44b3a25
+_commit=75bb71002333cf134baeddffd0b6108049cd67f7
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.4.3
-pkgrel=2
+pkgver=5.4.7
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -35,10 +35,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '0011-bootsplash.patch'
         '0012-bootsplash.patch'
         '0013-bootsplash.patch')
-md5sums=('70c395f3557979d4c8df513e003ec453'
+md5sums=('9c718784a7198c43955e8a3b10eccb1d'
          'd100765c77a7c03a445193a79b4612a1'
          '82f51ed0e475640eca70cb4778e13581'
-         'cedb451571ee5ea21881f1cc46ba5e49'
+         '4af52cb582bbe88b3bbb5160a2ce393f'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf'
