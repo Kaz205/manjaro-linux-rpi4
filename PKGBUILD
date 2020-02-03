@@ -4,11 +4,11 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 
 pkgbase=linux-rpi4-mainline
-_commit=9879128363e2c5b6611f1949586b30fceb501231
+_commit=6565befd52bd5ac5d0e81f7f1c4f47d2ebf3b0dc
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.4.13
+pkgver=5.5.0
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -33,12 +33,11 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '0009-bootsplash.patch'
         '0010-bootsplash.patch'
         '0011-bootsplash.patch'
-        '0012-bootsplash.patch'
-        '0013-bootsplash.patch')
-md5sums=('c27c059f9fafa2a91922331ce1b0239b'
+        '0012-bootsplash.patch')
+md5sums=('7e8b360cf8b6db6338c274afec1d18c4'
          'd100765c77a7c03a445193a79b4612a1'
          '82f51ed0e475640eca70cb4778e13581'
-         'ba6dc67546a72ce13a0f93206cd6eeaa'
+         '44fafc60c3cb349563a7108c816c820c'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf'
@@ -53,8 +52,7 @@ md5sums=('c27c059f9fafa2a91922331ce1b0239b'
          '6b6def41b404422dc04b39e2f1adffc8'
          '1922e3a7727d2bf51641b98d6d354738'
          'd6b7e4e43e42128cf950251e0d0aee23'
-         'ecfd8a30c480149005fcf349e4d06f4b'
-         '2ead9aa2df230c83539e3ebf6b796b18')
+         'ecfd8a30c480149005fcf349e4d06f4b')
 
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -73,7 +71,6 @@ prepare() {
   patch -Np1 -i "${srcdir}/0010-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0011-bootsplash.patch"
   patch -Np1 -i "${srcdir}/0012-bootsplash.patch"
-  git apply -p1 < "${srcdir}/0013-bootsplash.patch"
   
   cat "${srcdir}/config" > ./.config
 
