@@ -29,7 +29,7 @@ md5sums=('4ade75d78df34dede9218e65e209f97c'
          '00843aa08db95546d85ebb1b8306e844'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf'
+         '441ec084c47cddc53e592fb0cbce4edf')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
