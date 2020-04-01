@@ -4,12 +4,12 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 
 pkgbase=linux-rpi4-mainline
-_commit=a20cf39565718933a4e1252bf3a824e004c90d34
+_commit=f7e0d1321931f3858826f970f262fb3cfa9e1bce
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.5.13
-pkgrel=2
+pkgver=5.5.14
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -23,10 +23,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
         
-md5sums=('69721a3ccfd73b9ea52d1aa40c95694b'
+md5sums=('c5fafb793e3f69b6af706fa3a2390eff'
          'd100765c77a7c03a445193a79b4612a1'
          '82f51ed0e475640eca70cb4778e13581'
-         '2736b8b156e68cf2d9ff89c0e589c458'
+         '0d073e078ebbdebfaebc2a847d5fab27'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -210,3 +210,10 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
+md5sums=('c5fafb793e3f69b6af706fa3a2390eff'
+         'd100765c77a7c03a445193a79b4612a1'
+         '82f51ed0e475640eca70cb4778e13581'
+         'b0d0fc41304bb6e3a6665ad34691b4d2'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf')
