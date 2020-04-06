@@ -9,7 +9,7 @@ _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
 pkgver=5.6.0
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -26,7 +26,7 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
 md5sums=('d671affb953f10a4650f2a54e4deb01d'
          'd100765c77a7c03a445193a79b4612a1'
          '82f51ed0e475640eca70cb4778e13581'
-         'c53589af69da25d057dd864b13b0b100'
+         '659c9c4a8283cc88f4c26891f2e5b153'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')

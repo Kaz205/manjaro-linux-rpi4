@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.6.0-1 Kernel Configuration
+# Linux/arm64 5.6.0-2 Kernel Configuration
 #
 
 #
@@ -3568,8 +3568,8 @@ CONFIG_THERMAL_GOV_STEP_WISE=y
 #
 # Broadcom thermal drivers
 #
-# CONFIG_BCM2711_THERMAL is not set
-CONFIG_BCM2835_THERMAL=y
+CONFIG_BCM2711_THERMAL=y
+# CONFIG_BCM2835_THERMAL is not set
 # end of Broadcom thermal drivers
 
 # CONFIG_GENERIC_ADC_THERMAL is not set
