@@ -4,11 +4,11 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 
 pkgbase=linux-rpi4-mainline
-_commit=b283c393cedbc9553c1f8b56e66e4296fab1ef36
+_commit=6153bd164198b8d1cbb8c244e07e4bde2549117d
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.6.2
+pkgver=5.6.4
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -23,10 +23,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
         
-md5sums=('34172d72a562bc792b196fa8855e6214'
+md5sums=('0e53f68cfc3de4dfe6f5480dd335dce2'
          'd100765c77a7c03a445193a79b4612a1'
          '82f51ed0e475640eca70cb4778e13581'
-         'd6955c816bb9707afad517d7a811423c'
+         '80b15a826a76f125e0e47da416e37080'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
