@@ -2,14 +2,15 @@
 # Contributor: Kevin Mihelich <kevin@archlinuxarm.org>
 # Contributor: Oleg Rakhmanov <oleg@archlinuxarm.org>
 # Maintainer: Dan Johansen <strit@manjaro.org>
+# Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=f44c50c867ee1348b55c75aad272e4ca1209abdd
+_commit=0716e3e044223434e4160a5dd50c91d05751766d
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
 pkgver=5.6.10
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -23,7 +24,7 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
         
-md5sums=('9fe398ac49d223bc0d2e3d384aec4c2f'
+md5sums=('75cea135288bfe5856819ebc58788996'
          'd100765c77a7c03a445193a79b4612a1'
          '82f51ed0e475640eca70cb4778e13581'
          'da9f048fc6c46b0c122a8ebc6ac3bf90'
