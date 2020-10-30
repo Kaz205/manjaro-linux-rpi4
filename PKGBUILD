@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=adc61723acd2ac3020707d847ed411c3e2b768c0
+_commit=08afa073a521f38b92a1138f1321832b41b4c05e
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.9.1
+pkgver=5.9.2
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,10 +24,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('c8ce403b1fb2b2ebf11994ab4f3f0998'
+md5sums=('12287f6790bc52a31a2d1e5730c243c7'
          'd100765c77a7c03a445193a79b4612a1'
-         'ddc9a74c5f7e484ae109de909610d6c9'
-         'ce510940042fcfdaf077fbc3da2cde0e'
+         '829f04a7889f3a67284ba33e6ba2a8f3'
+         'dee3c9c80a8aa253972483cd00759775'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -79,7 +79,7 @@ _package() {
   depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7' 'firmware-raspberrypi')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('kernel26' "linux=${pkgver}")
-  conflicts=('kernel26' 'linux')
+  conflicts=('kernel26' 'linux' 'uboot-raspberrypi')
   install=${pkgname}.install
   backup=('boot/config.txt' 'boot/cmdline.txt')
   replaces=('linux-raspberrypi-latest')
