@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=08afa073a521f38b92a1138f1321832b41b4c05e
+_commit=710b47627f7b9e9301278da48c45f6eb2f8124c8
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.9.2
+pkgver=5.9.3
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,10 +24,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('12287f6790bc52a31a2d1e5730c243c7'
+md5sums=('b0fc9089091485b8dd677a84ab521717'
          'd100765c77a7c03a445193a79b4612a1'
          '829f04a7889f3a67284ba33e6ba2a8f3'
-         'dee3c9c80a8aa253972483cd00759775'
+         '4da4ffda8941f7937cc93b506f5ad859'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -97,6 +97,7 @@ _package() {
   make INSTALL_MOD_PATH="${pkgdir}/usr" modules_install
 
   cp arch/$KARCH/boot/dts/broadcom/bcm2711-rpi-4-b.dtb "${pkgdir}/boot"
+  cp arch/$KARCH/boot/dts/broadcom/bcm2711-rpi-400.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2710-rpi-3-b.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/Image "${pkgdir}/boot/kernel8.img"
