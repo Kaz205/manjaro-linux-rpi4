@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.9.6 Kernel Configuration
+# Linux/arm64 5.9.10 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 10.2.0"
 CONFIG_CC_IS_GCC=y
@@ -2865,9 +2865,9 @@ CONFIG_KEYBOARD_MATRIX=m
 # CONFIG_KEYBOARD_BCM is not set
 # CONFIG_INPUT_MOUSE is not set
 CONFIG_INPUT_JOYSTICK=y
-# CONFIG_JOYSTICK_ANALOG is not set
+CONFIG_JOYSTICK_ANALOG=m
 # CONFIG_JOYSTICK_A3D is not set
-# CONFIG_JOYSTICK_ADI is not set
+CONFIG_JOYSTICK_ADI=m
 # CONFIG_JOYSTICK_COBRA is not set
 # CONFIG_JOYSTICK_GF2K is not set
 # CONFIG_JOYSTICK_GRIP is not set

@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=5ca76ffaf4f053855ea03951c7a40682b2cb49c0
+_commit=5c2aeeefeea44f335c019e162f916e3f96ec3af5
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.9.6
+pkgver=5.9.10
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,10 +24,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('eb492a1430195ca11a0f8b940794b0dd'
+md5sums=('6b53d5bb5808c48def1f99c64aceebcf'
          'd100765c77a7c03a445193a79b4612a1'
          '829f04a7889f3a67284ba33e6ba2a8f3'
-         '05b56fa27686881daab30d1b6b2339b3'
+         '64515812bf6963015e97ae36a9f37d37'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
