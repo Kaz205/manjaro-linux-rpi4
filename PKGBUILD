@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=9306844b43ed6eeb5afe6f5fb54289979636c6e5
+_commit=cff5fa15e5d11758db426eee3524a5dfded3c62b
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.9.11
+pkgver=5.9.12
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,13 +24,13 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('3b78365a8e6d9dab304d031db4b2ebea'
+md5sums=('2e264a5e8326099f13517484c6ff2bc9'
          'd100765c77a7c03a445193a79b4612a1'
          '829f04a7889f3a67284ba33e6ba2a8f3'
-         '81c305ba669d91e0520e39c0841b2854'
+         '13b986285769bef9fc45e76cf6148187'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf'
+         '441ec084c47cddc53e592fb0cbce4edf')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
