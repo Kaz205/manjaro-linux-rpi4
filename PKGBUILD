@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=6af8ae321a801a4e20183454c65eb0d23069d8ac
+_commit=98a26692449ad74be15a25c05bb5be5396aaea4f
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.10.11
+pkgver=5.10.13
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,10 +24,10 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('c9c80e7aca8fd3d13156b2a3e347a719'
+md5sums=('400e0a2fe9bc5bdc046b49ccd94968e1'
          'd100765c77a7c03a445193a79b4612a1'
          '829f04a7889f3a67284ba33e6ba2a8f3'
-         '61578137d5f7c89f198523cf9f783fbb'
+         '1ce3d4256b68b2d58dad343970fd0541'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -101,7 +101,7 @@ _package() {
   cp arch/$KARCH/boot/dts/broadcom/bcm2710-rpi-3-b-plus.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2710-rpi-3-b.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/Image "${pkgdir}/boot/kernel8.img"
-  cp arch/$KARCH/boot/dts/overlays/*.dtbo* "${pkgdir}/boot/overlays"
+  cp arch/$KARCH/boot/dts/overlays/*.dtb* "${pkgdir}/boot/overlays"
   cp arch/$KARCH/boot/dts/overlays/README "${pkgdir}/boot/overlays"
 
   # make room for external modules
