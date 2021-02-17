@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=e7d4a958d4662a95574ef166adba161a1edf4319
+_commit=fa9a758098a34395a885ad745c25635021265f63
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.10.14
+pkgver=5.11.0
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -17,17 +17,13 @@ license=('GPL2')
 makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git')
 options=('!strip')
 source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
-        'config.txt'
-        'cmdline.txt'
         'config'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('a74d9dfe012237cb6c92e5788c901107'
-         'd100765c77a7c03a445193a79b4612a1'
-         '829f04a7889f3a67284ba33e6ba2a8f3'
-         '1ce3d4256b68b2d58dad343970fd0541'
+md5sums=('532a80e94bb64921fcbc167ee6013049'
+         'f84766c4eb3f098920b09577a02ed49f'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -81,7 +77,6 @@ _package() {
   provides=('kernel26' "linux=${pkgver}")
   conflicts=('kernel26' 'linux' 'uboot-raspberrypi')
   install=${pkgname}.install
-  backup=('boot/config.txt' 'boot/cmdline.txt')
   replaces=('linux-raspberrypi-latest')
 
   cd "${srcdir}/${_srcname}"
@@ -134,9 +129,6 @@ _package() {
     install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/60-${pkgbase}.hook"
   sed "${_subst}" ../90-linux.hook |
     install -Dm644 /dev/stdin "${pkgdir}/usr/share/libalpm/hooks/90-${pkgbase}.hook"
-
-  # install boot files
-  install -m644 ../config.txt ../cmdline.txt "${pkgdir}/boot"
 }
 
 _package-headers() {
