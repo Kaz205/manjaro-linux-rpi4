@@ -50,7 +50,7 @@ post_upgrade() {
   if [ -f /boot/config.txt ]; then
   echo "===> Keeping old config.txt file..."
   else
-  echo "===> Installing config.txt & cmdline.txt to /boot/..."
+  echo "===> Installing default config.txt to /boot/..."
   echo "# See /boot/overlays/README for all available options" > /boot/config.txt
   echo "" >> /boot/config.txt
   echo "gpu_mem=64" >> /boot/config.txt

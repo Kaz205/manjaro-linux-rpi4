@@ -1,0 +1,12 @@
+--- a/drivers/gpu/drm/vc4/vc4_plane.c	2021-03-04 13:03:11.000000000 -0600
++++ b/drivers/gpu/drm/vc4/vc4_plane.c	2021-03-09 08:19:55.000000000 -0600
+@@ -366,7 +366,8 @@
+ 	    (state->src.x2 & subpixel_src_mask) ||
+ 	    (state->src.y1 & subpixel_src_mask) ||
+ 	    (state->src.y2 & subpixel_src_mask)) {
+-		return -EINVAL;
++		DRM_DEBUG_KMS("Invalid subpixel scaling %x %x %x %x (%x)\n", state->src.x1, state->src.x2, state->src.y1, state->src.y2, subpixel_src_mask);
++		//return -EINVAL;
+ 	}
+ 
+ 	vc4_state->src_x = state->src.x1 >> 16;
