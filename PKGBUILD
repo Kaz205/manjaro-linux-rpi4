@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=f68df2661d82a2c81d8b979f5fcf3dd8b12d5e61
+_commit=88a484a356bf576bcbec975ad9a4f1b95259e778
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.11.8
+pkgver=5.11.10
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -18,14 +18,13 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git')
 options=('!strip')
 source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'config'
-        'vc4_place-do-not-reject-fractional-source-coords.diff'
+#        'vc4_place-do-not-reject-fractional-source-coords.diff'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('14895d77be96c328ce16436e400b82da'
-         '5d3f4ca5de0e6614761b10d82e3be030'
-         '76c34a65bcc921dbb1cc6c79c7bc5a4f'
+md5sums=('1e3cbaed90898345ad32b2905e6d8c98'
+         '2019b661e5997ba427ec34db55ffd704'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -40,7 +39,7 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-  patch -Np1 -i ../vc4_place-do-not-reject-fractional-source-coords.diff
+#  patch -Np1 -i ../vc4_place-do-not-reject-fractional-source-coords.diff
 }
 
 build() {
