@@ -1,7 +1,4 @@
 post_install () {
-  if [ -f /boot/cmdline.txt.pacsave ]; then
-  mv /boot/cmdline.txt.pacsave /boot/cmdline.txt
-  fi
   if [ -f /boot/cmdline.txt ]; then
   echo "===> Keeping old cmdline.txt file..."
   else
@@ -9,9 +6,6 @@ post_install () {
   echo "root=LABEL=ROOT_MNJRO rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 elevator=noop usbhid.mousepoll=8 snd-bcm2835.enable_compat_alsa=0 audit=0" > /boot/cmdline.txt
   fi
 
-  if [ -f /boot/config.txt.pacsave ]; then
-  mv /boot/config.txt.pacsave /boot/config.txt
-  fi
   if [ -f /boot/config.txt ]; then
   echo "===> Keeping old config.txt file..."
   else
@@ -35,18 +29,13 @@ post_install () {
 }
 
 post_upgrade() {
-  if [ -f /boot/cmdline.txt.pacsave ]; then
-  mv /boot/cmdline.txt.pacsave /boot/cmdline.txt
-  fi
   if [ -f /boot/cmdline.txt ]; then
   echo "===> Keeping old cmdline.txt file..."
   else
+  echo "===> Installing default config.txt to /boot/..."
   echo "root=LABEL=ROOT_MNJRO rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 elevator=noop usbhid.mousepoll=8 snd-bcm2835.enable_compat_alsa=0 audit=0" > /boot/cmdline.txt
   fi
 
-  if [ -f /boot/config.txt.pacsave ]; then
-  mv /boot/config.txt.pacsave /boot/config.txt
-  fi
   if [ -f /boot/config.txt ]; then
   echo "===> Keeping old config.txt file..."
   else
