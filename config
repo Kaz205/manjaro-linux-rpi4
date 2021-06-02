@@ -1,6 +1,6 @@
 #
 # Automatically generated file; DO NOT EDIT.
-# Linux/arm64 5.12.5 Kernel Configuration
+# Linux/arm64 5.12.6 Kernel Configuration
 #
 CONFIG_CC_VERSION_TEXT="gcc (GCC) 10.2.0"
 CONFIG_CC_IS_GCC=y
@@ -3603,7 +3603,7 @@ CONFIG_GPIO_BCM_VIRT=y
 # CONFIG_GPIO_MAX7300 is not set
 # CONFIG_GPIO_MAX732X is not set
 CONFIG_GPIO_PCA953X=m
-# CONFIG_GPIO_PCA953X_IRQ is not set
+CONFIG_GPIO_PCA953X_IRQ=y
 # CONFIG_GPIO_PCA9570 is not set
 CONFIG_GPIO_PCF857X=m
 # CONFIG_GPIO_TPIC2810 is not set
@@ -6849,7 +6849,7 @@ CONFIG_BME680_SPI=m
 # CONFIG_IAQCORE is not set
 # CONFIG_PMS7003 is not set
 # CONFIG_SCD30_CORE is not set
-# CONFIG_SENSIRION_SGP30 is not set
+CONFIG_SENSIRION_SGP30=m
 CONFIG_SPS30=m
 # CONFIG_VZ89X is not set
 # end of Chemical Sensors
