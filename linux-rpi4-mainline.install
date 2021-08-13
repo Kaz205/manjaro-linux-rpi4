@@ -1,9 +1,14 @@
 post_install () {
+  # Define root partitions partuuid
+  PART_DEV=`findmnt / -o source -n | cut -f1 -d"["`
+  PART_NAME=`echo $PART_DEV | cut -d "/" -f 3`
+  ROOT_PART=$(lsblk -p -o NAME,PARTUUID | grep "${PART_NAME}" | awk '{print $2}')
+  
   if [ -f /boot/cmdline.txt ]; then
   echo "===> Keeping old cmdline.txt file..."
   else
   echo "===> Installing default cmdline.txt file to /boot/..."
-  echo "root=LABEL=ROOT_MNJRO rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 elevator=noop usbhid.mousepoll=8 snd-bcm2835.enable_compat_alsa=0 audit=0" > /boot/cmdline.txt
+  echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 snd-bcm2835.enable_compat_alsa=0 audit=0" > /boot/cmdline.txt
   fi
 
   if [ -f /boot/config.txt ]; then
@@ -29,11 +34,14 @@ post_install () {
 }
 
 post_upgrade() {
+    # Define root partitions partuuid
+  ROOT_PART=$(lsblk -p -o NAME,PARTUUID | grep "${LDEV}p2" | awk '{print $2}')
+  
   if [ -f /boot/cmdline.txt ]; then
   echo "===> Keeping old cmdline.txt file..."
   else
   echo "===> Installing default config.txt to /boot/..."
-  echo "root=LABEL=ROOT_MNJRO rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 elevator=noop usbhid.mousepoll=8 snd-bcm2835.enable_compat_alsa=0 audit=0" > /boot/cmdline.txt
+  echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 snd-bcm2835.enable_compat_alsa=0 audit=0" > /boot/cmdline.txt
   fi
 
   if [ -f /boot/config.txt ]; then
