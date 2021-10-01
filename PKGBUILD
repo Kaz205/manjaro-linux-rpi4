@@ -5,7 +5,7 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=b502977cb1c51ce78f8f1880f53c55abb9db109c
+_commit=90100ac14ad66b30117a62d52879cdc628b31313
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
@@ -23,8 +23,8 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('cc891c668981c47ce606ce2f3f77783a'
-         '6706163571d2bb6073e2da610a2091e4'
+md5sums=('aab2fcec8aaf9af94d23755c25527b93'
+         '7da1c9f46b63896d06d97740b073ee88'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -93,6 +93,7 @@ _package() {
   mkdir -p "${pkgdir}"/{boot/overlays,usr/lib/modules}
   make INSTALL_MOD_PATH="${pkgdir}/usr" modules_install
 
+  cp arch/$KARCH/boot/dts/broadcom/bcm2710-rpi-cm3.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2711-rpi-cm4.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2711-rpi-4-b.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2711-rpi-400.dtb "${pkgdir}/boot"
