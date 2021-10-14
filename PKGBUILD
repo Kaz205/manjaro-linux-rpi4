@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=1be2965a60ead1a3b95b038c52c1058b8890a401
+_commit=9c2b16eb80bef21bf1b52c1746b855ecfb74f02e
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.14.9
+pkgver=5.14.12
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -18,13 +18,12 @@ makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git')
 options=('!strip')
 source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'config'
-#        'vc4_place-do-not-reject-fractional-source-coords.diff'
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('804e98f6439f04f4a00754429ddff7f8'
-         'fede7781ecdd35c15362b740e49e3f82'
+md5sums=('823f199f2bc54ebdfb79b4d224231e61'
+         '416e4a5bdfffa5a75d3b61478418251b'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
