@@ -3,6 +3,7 @@ post_install () {
   PART_DEV=`findmnt / -o source -n | cut -f1 -d"["`
   PART_NAME=`echo $PART_DEV | cut -d "/" -f 3`
   ROOT_PART=$(lsblk -p -o NAME,PARTUUID | grep "${PART_NAME}" | awk '{print $2}')
+  FSTYPE=$(lsblk -p -o NAME,FSTYPE | grep "${PART_NAME}" | awk '{print $2}')
   
   if [ -f /boot/cmdline.txt ]; then
   echo "===> Your old cmdline.txt saved as /boot/cmdline.txt-backup"
@@ -13,7 +14,11 @@ post_install () {
 #  else
 #  echo "===> Installing default cmdline.txt file to /boot/..."
   echo "===> Installing new cmdline.txt file to /boot/..."
-  echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+  if [[ "$FSTYPE" = "btrfs" ]]; then
+    echo "rootflags=subvol=@ rootfstype=btrfs root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+  else
+    echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+  fi
   fi
 
   if [ -f /boot/config.txt ]; then
@@ -43,9 +48,7 @@ post_upgrade() {
   PART_DEV=`findmnt / -o source -n | cut -f1 -d"["`
   PART_NAME=`echo $PART_DEV | cut -d "/" -f 3`
   ROOT_PART=$(lsblk -p -o NAME,PARTUUID | grep "${PART_NAME}" | awk '{print $2}')
-
-    # Define root partitions partuuid
-  ROOT_PART=$(lsblk -p -o NAME,PARTUUID | grep "${LDEV}p2" | awk '{print $2}')
+  FSTYPE=$(lsblk -p -o NAME,FSTYPE | grep "${PART_NAME}" | awk '{print $2}')
   
   if [ -f /boot/cmdline.txt ]; then
   echo "===> Your old cmdline.txt saved as /boot/cmdline.txt-backup"
@@ -55,7 +58,11 @@ post_upgrade() {
   mv /boot/cmdline.txt /boot/cmdline.txt-backup
 #  else
   echo "===> Installing new cmdline.txt to /boot/..."
-  echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+  if [[ "$FSTYPE" = "btrfs" ]]; then
+    echo "rootflags=subvol=@ rootfstype=btrfs root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+  else
+    echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+  fi
   fi
 
   if [ -f /boot/config.txt ]; then

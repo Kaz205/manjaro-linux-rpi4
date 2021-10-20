@@ -5,12 +5,12 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=a4ac6b1b004bf2cbe6c0623105b4fb82c638680a
+_commit=f6d508313e37b16eb1b7c7b394b9f93fec3a3160
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.14.12
-pkgrel=2
+pkgver=5.14.13
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -22,8 +22,8 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook')
 
-md5sums=('823f199f2bc54ebdfb79b4d224231e61'
-         '416e4a5bdfffa5a75d3b61478418251b'
+md5sums=('302a129016f3a642562826cc14aadd6b'
+         '30c0f172cf2633cb47cd78ca53d4933d'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -208,13 +208,3 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
-md5sums=('5cc261bc4e3ac5f7d51026ff2b5c3abb'
-         '416e4a5bdfffa5a75d3b61478418251b'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
-md5sums=('5cc261bc4e3ac5f7d51026ff2b5c3abb'
-         '7e02a80c46120a61d4a02f124ab149b3'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
