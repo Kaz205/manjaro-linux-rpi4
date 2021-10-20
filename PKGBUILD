@@ -5,12 +5,12 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=9c2b16eb80bef21bf1b52c1746b855ecfb74f02e
+_commit=a4ac6b1b004bf2cbe6c0623105b4fb82c638680a
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
 pkgver=5.14.12
-pkgrel=1
+pkgrel=2
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -187,7 +187,7 @@ _package-headers() {
   find -L "${_builddir}" -type l -printf 'Removing %P\n' -delete
 
   # Fix permissions
-  chmod -R u=rwX,go=rX "${_builddir}"
+  #chmod -R u=rwX,go=rX "${_builddir}"
 
   # strip scripts directory
   local _binary _strip
@@ -208,3 +208,13 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
+md5sums=('5cc261bc4e3ac5f7d51026ff2b5c3abb'
+         '416e4a5bdfffa5a75d3b61478418251b'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf')
+md5sums=('5cc261bc4e3ac5f7d51026ff2b5c3abb'
+         '7e02a80c46120a61d4a02f124ab149b3'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf')
