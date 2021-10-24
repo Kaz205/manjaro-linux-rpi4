@@ -11,6 +11,11 @@ post_install () {
     sed -i -e 's/snd-bcm2835.enable_compat_alsa=. //g' /boot/cmdline.txt
     sed -i -e 's/snd_bcm2835.enable_headphones=. //g' /boot/cmdline.txt
     sed -i -e 's/snd-bcm2835.enable_headphones=. //g' /boot/cmdline.txt
+# Added in case arguments to be removed are at the end of line
+    sed -i -e 's/ snd_bcm2835.enable_compat_alsa=.//g' /boot/cmdline.txt
+    sed -i -e 's/ snd-bcm2835.enable_compat_alsa=.//g' /boot/cmdline.txt
+    sed -i -e 's/ snd_bcm2835.enable_headphones=.//g' /boot/cmdline.txt
+    sed -i -e 's/ snd-bcm2835.enable_headphones=.//g' /boot/cmdline.txt
     sed -i -e 's/[ ]\+/ /g' /boot/cmdline.txt
     fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "btrfs" ]]; then
@@ -62,6 +67,11 @@ post_upgrade () {
     sed -i -e 's/snd-bcm2835.enable_compat_alsa=. //g' /boot/cmdline.txt
     sed -i -e 's/snd_bcm2835.enable_headphones=. //g' /boot/cmdline.txt
     sed -i -e 's/snd-bcm2835.enable_headphones=. //g' /boot/cmdline.txt
+# Added in case arguments to be removed are at the end of line
+    sed -i -e 's/ snd_bcm2835.enable_compat_alsa=.//g' /boot/cmdline.txt
+    sed -i -e 's/ snd-bcm2835.enable_compat_alsa=.//g' /boot/cmdline.txt
+    sed -i -e 's/ snd_bcm2835.enable_headphones=.//g' /boot/cmdline.txt
+    sed -i -e 's/ snd-bcm2835.enable_headphones=.//g' /boot/cmdline.txt
     sed -i -e 's/[ ]\+/ /g' /boot/cmdline.txt
     fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "btrfs" ]]; then
