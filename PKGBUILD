@@ -40,7 +40,7 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-   patch -Np1 -i ../linux-rpi4/revert-gamma.diff
+   patch -Np1 -i ../revert-gamma.diff
 }
 
 build() {
