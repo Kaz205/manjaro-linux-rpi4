@@ -24,6 +24,7 @@ package:
     - aarch64
     - bigbuilds
     - xlarge
+    - spikerguy-honeycomb
   script:
     # build pkg via chrootbuild
     - export PKG=${PWD##*/}

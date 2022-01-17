@@ -5,12 +5,12 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=9d83cf310eebe71c1840e4ea4548153ece34bc3a
+_commit=4ea4e1e59a15cf21c7ffb27064458321961392e9
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.16.0
-pkgrel=2
+pkgver=5.16.1
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -20,15 +20,14 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'config'
         'linux.preset'
         '60-linux.hook'
-        '90-linux.hook'
-        'linux-rpi4/revert-gamma.diff')
+        '90-linux.hook')
+#        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('061a461d6ca77b72db48f97fe31e3493'
-         '4253de58f23b92d308fce5e8a21a8e42'
+md5sums=('4313b8cb10abb44c245bf14943845c82'
+         'b8106ef183f47feb2dfffc428f8355a4'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf'
-         'e15bac8034085a38ecd4a57584caa819')
+         '441ec084c47cddc53e592fb0cbce4edf')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -40,7 +39,7 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-   patch -Np1 -i ../revert-gamma.diff
+#   patch -Np1 -i ../revert-gamma.diff
 }
 
 build() {
