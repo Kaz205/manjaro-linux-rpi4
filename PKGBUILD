@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=4ea4e1e59a15cf21c7ffb27064458321961392e9
+_commit=479b390321ec2756115e8cd4c5cda4147db4935f
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.16.1
+pkgver=5.16.2
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -23,8 +23,8 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '90-linux.hook')
 #        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('4313b8cb10abb44c245bf14943845c82'
-         'b8106ef183f47feb2dfffc428f8355a4'
+md5sums=('835c1b2f677e12a2f1d969c59ade3210'
+         '7a1fafa52f4016f200288ee220e89580'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -74,7 +74,7 @@ build() {
 
 _package() {
   pkgdesc="The Linux Kernel and modules - ${_desc}"
-  depends=('coreutils' 'linux-firmware' 'kmod' 'mkinitcpio>=0.7' 'firmware-raspberrypi')
+  depends=('coreutils' 'linux-firmware' 'kmod' 'initramfs' 'firmware-raspberrypi')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('kernel26' "linux=${pkgver}")
   conflicts=('kernel26' 'linux' 'uboot-raspberrypi')
