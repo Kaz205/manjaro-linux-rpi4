@@ -24,6 +24,7 @@ package:
     - aarch64
     - bigbuilds
     - xlarge
+    - Fosshost
 #    - spikerguy-honeycomb
   script:
     # build pkg via chrootbuild
