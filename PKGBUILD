@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=c1ace7e05973bda21b21625fc4836dd2f4970db2
+_commit=87b9187b16f1fb2baa810e0545fd8c37dc786b01
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.16.3
+pkgver=5.16.4
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -23,8 +23,8 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '90-linux.hook')
 #        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('2bc00d31a2812001295b8293358b6260'
-         '58b00f4780e7ccba7017c58dbaa36814'
+md5sums=('1d7826fc5e7653ced64b33e9c322f546'
+         'e99f82e36417caad428ea0f881ca9650'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
