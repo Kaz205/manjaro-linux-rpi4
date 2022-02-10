@@ -24,7 +24,7 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
 #        'linux-rpi4/revert-gamma.diff')
 
 md5sums=('d24155a80706f5cd7a64d359c5fec641'
-         '72545cb0ed1b5fa622b53432bea50639'
+         '4b0321c140e74db873538b6b56d7407e'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
@@ -210,13 +210,3 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
-md5sums=('d24155a80706f5cd7a64d359c5fec641'
-         '72545cb0ed1b5fa622b53432bea50639'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
-md5sums=('d24155a80706f5cd7a64d359c5fec641'
-         '4b0321c140e74db873538b6b56d7407e'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
