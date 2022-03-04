@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=14a12299f312d7dd710ae6fdd6d866043783e00a
+_commit=2099a3609181d947e1afc14002a4520af6f64790
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.16.11
+pkgver=5.16.12
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -210,3 +210,13 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
+md5sums=('46b9f32bced16ab3cadd1488b37c53df'
+         '9b9f21a59ee1dd82b454af766c070bed'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf')
+md5sums=('46b9f32bced16ab3cadd1488b37c53df'
+         '62ef8164d91e5273e2fc5e28908324b7'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf')
