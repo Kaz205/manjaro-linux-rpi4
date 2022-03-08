@@ -5,7 +5,7 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=2099a3609181d947e1afc14002a4520af6f64790
+_commit=4010a61b870a3feb5d3837f3852b301fc859219a
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
@@ -20,14 +20,16 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'config'
         'linux.preset'
         '60-linux.hook'
-        '90-linux.hook')
+        '90-linux.hook'
+        'xhci-revert.diff')
 #        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('2f18c64863cf9b7b2b336b152a7f9c8f'
-         '9b9f21a59ee1dd82b454af766c070bed'
+md5sums=('32ac8916e8d6a88e4d086381f59bf9dc'
+         '62ef8164d91e5273e2fc5e28908324b7'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
+         '441ec084c47cddc53e592fb0cbce4edf'
+         'c60be2f077587a2add0ee1f1099d2cf9')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -39,6 +41,7 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
+  patch -Np1 -i ../xhci-revert.diff
 #   patch -Np1 -i ../revert-gamma.diff
 }
 
@@ -210,13 +213,3 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
-md5sums=('46b9f32bced16ab3cadd1488b37c53df'
-         '9b9f21a59ee1dd82b454af766c070bed'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
-md5sums=('46b9f32bced16ab3cadd1488b37c53df'
-         '62ef8164d91e5273e2fc5e28908324b7'
-         '86d4a35722b5410e3b29fc92dae15d4b'
-         'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
