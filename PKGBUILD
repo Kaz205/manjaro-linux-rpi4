@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=73a3c6bcf5f0a07c1df10cdaffd8651bd1166e41
+_commit=044cb8a6409c87916d986db1b0c2fd90e9c96230
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.16.14
+pkgver=5.16.16
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,12 +24,12 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'xhci-revert.diff')
 #        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('9f9c45c9ce523a11abcd3def6b5608f7'
-         '8f258d7c2f8a480ca9c507d28bc38b40'
+md5sums=('19b6333b0ac012a76c8c0d9c6c7ede6d'
+         'e85df3e9a442d40c6bc3f53d8af3112d'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf'
-         'c60be2f077587a2add0ee1f1099d2cf9')
+         'e0466797e6a76a68e63424a268e71cef')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
