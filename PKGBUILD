@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=9f9189ea3d4cc9a240d58bc88eb0dcee82ffbb8b
+_commit=5b75d7c60a8102366474dd45339ca9be21eec554
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.0
+pkgver=5.17.1
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -20,16 +20,15 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'config'
         'linux.preset'
         '60-linux.hook'
-        '90-linux.hook'
-        'xhci-revert.diff')
+        '90-linux.hook')
+#        'xhci-revert.diff')
 #        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('4169281cc95189462cd14e19dadeb374'
-         '796d03d6bda9be1300921171e33dfb91'
+md5sums=('07265145b5a0f24d45a70787f5c52145'
+         '0da642a0894647938d3abd56c3f67e55'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf'
-         'e0466797e6a76a68e63424a268e71cef')
+         '441ec084c47cddc53e592fb0cbce4edf')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -41,7 +40,7 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-  patch -Np1 -i ../xhci-revert.diff
+#  patch -Np1 -i ../xhci-revert.diff
 #   patch -Np1 -i ../revert-gamma.diff
 }
 
