@@ -5,12 +5,12 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=104ce279c14caecd6e49f9cc0d0dfbd9947c95d1
+_commit=838f19a0b6c23619134a0b198ac8420f0eb64e52
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.1
-pkgrel=2
+pkgver=5.17.2
+pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
@@ -24,8 +24,8 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
 #        'xhci-revert.diff')
 #        'linux-rpi4/revert-gamma.diff')
 
-md5sums=('4c27367fa99e2ce8c35b87fbde49b612'
-         '294e65d8588f284630f1ec1d0cc1267c'
+md5sums=('9d473f3b6011bde5363968a5c2c3ab83'
+         'a4ac0af26946daa26f6a366fd93da181'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf')
