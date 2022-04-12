@@ -1,0 +1,68 @@
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index fb8c1aa9fcb2..d616fdaa0879 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1488,6 +1488,13 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
+ 	int i, ret;
+ 	unsigned int crtc_mask = 0;
+ 
++	 /*
++	  * Legacy cursor ioctls are completely unsynced, and userspace
++	  * relies on that (by doing tons of cursor updates).
++	  */
++	if (old_state->legacy_cursor_update)
++		return;
++
+ 	for_each_oldnew_crtc_in_state(old_state, crtc, old_crtc_state, new_crtc_state, i) {
+ 		if (!new_crtc_state->active)
+ 			continue;
+@@ -2116,6 +2123,12 @@ int drm_atomic_helper_setup_commit(struct drm_atomic_state *state,
+ 			continue;
+ 		}
+ 
++		/* Legacy cursor updates are fully unsynced. */
++		if (state->legacy_cursor_update) {
++			complete_all(&commit->flip_done);
++			continue;
++		}
++
+ 		if (!new_crtc_state->event) {
+ 			commit->event = kzalloc(sizeof(*commit->event),
+ 						GFP_KERNEL);
+diff --git a/drivers/gpu/drm/i915/display/intel_display.c b/drivers/gpu/drm/i915/display/intel_display.c
+index 08e0347f382d..c9b051ab18e0 100644
+--- a/drivers/gpu/drm/i915/display/intel_display.c
++++ b/drivers/gpu/drm/i915/display/intel_display.c
+@@ -10821,19 +10821,6 @@ static int intel_atomic_commit(struct drm_device *dev,
+ 				state->base.legacy_cursor_update = false;
+ 	}
+ 
+-	/*
+-	 * FIXME: Cut over to (async) commit helpers instead of hand-rolling
+-	 * everything.
+-	 */
+-	if (state->base.legacy_cursor_update) {
+-		struct intel_crtc_state *new_crtc_state;
+-		struct intel_crtc *crtc;
+-		int i;
+-
+-		for_each_new_intel_crtc_in_state(state, crtc, new_crtc_state, i)
+-			complete_all(&new_crtc_state->uapi.commit->flip_done);
+-	}
+-
+ 	ret = intel_atomic_prepare_commit(state);
+ 	if (ret) {
+ 		drm_dbg_atomic(&dev_priv->drm,
+diff --git a/drivers/gpu/drm/msm/msm_atomic.c b/drivers/gpu/drm/msm/msm_atomic.c
+index 3f91a9400160..fab09e7c6efc 100644
+--- a/drivers/gpu/drm/msm/msm_atomic.c
++++ b/drivers/gpu/drm/msm/msm_atomic.c
+@@ -246,8 +246,6 @@ void msm_atomic_commit_tail(struct drm_atomic_state *state)
+ 		/* async updates are limited to single-crtc updates: */
+ 		WARN_ON(crtc_mask != drm_crtc_mask(async_crtc));
+ 
+-		complete_all(&async_crtc->state->commit->flip_done);
+-
+ 		/*
+ 		 * Start timer if we don't already have an update pending
+ 		 * on this crtc:

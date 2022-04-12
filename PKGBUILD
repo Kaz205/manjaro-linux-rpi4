@@ -5,7 +5,7 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=838f19a0b6c23619134a0b198ac8420f0eb64e52
+_commit=ee4d9525756360f1d0872afa94e23d7f6ff8e4b8
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
@@ -20,15 +20,17 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'config'
         'linux.preset'
         '60-linux.hook'
-        '90-linux.hook')
-#        'xhci-revert.diff')
-#        'linux-rpi4/revert-gamma.diff')
+        '90-linux.hook'
+        'revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff'
+        'revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff')
 
-md5sums=('9d473f3b6011bde5363968a5c2c3ab83'
+md5sums=('8c74cb479754742ff92bc18f8e3b9b59'
          'a4ac0af26946daa26f6a366fd93da181'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
-         '441ec084c47cddc53e592fb0cbce4edf')
+         '441ec084c47cddc53e592fb0cbce4edf'
+         '8ba94d83f48bf07ed146c08d99c00eef'
+         '9735e2a2e1b95ad0a55530d60d28aa79')
          
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -40,8 +42,8 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-#  patch -Np1 -i ../xhci-revert.diff
-#   patch -Np1 -i ../revert-gamma.diff
+  patch -Np1 -i ../revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff
+  patch -Np1 -i ../revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff
 }
 
 build() {
