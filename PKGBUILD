@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=ee4d9525756360f1d0872afa94e23d7f6ff8e4b8
+_commit=ca1c34d1e375c27c034e449f8374d62fdadcfa91
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.2
+pkgver=5.17.3
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -214,3 +214,31 @@ for _p in ${pkgname[@]}; do
     _package${_p#${pkgbase}}
   }"
 done
+md5sums=('8c74cb479754742ff92bc18f8e3b9b59'
+         'a4ac0af26946daa26f6a366fd93da181'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf'
+         '8ba94d83f48bf07ed146c08d99c00eef'
+         '9735e2a2e1b95ad0a55530d60d28aa79')
+md5sums=('4eeb19147096bcbebeb61f7d71376a20'
+         'a4ac0af26946daa26f6a366fd93da181'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf'
+         '8ba94d83f48bf07ed146c08d99c00eef'
+         '9735e2a2e1b95ad0a55530d60d28aa79')
+md5sums=('4eeb19147096bcbebeb61f7d71376a20'
+         '2fb5905135d626ebc3fa86767eb0c1fb'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf'
+         '8ba94d83f48bf07ed146c08d99c00eef'
+         '9735e2a2e1b95ad0a55530d60d28aa79')
+md5sums=('4eeb19147096bcbebeb61f7d71376a20'
+         'db31cb3fd52ccf35b1fd94a44cde9bf1'
+         '86d4a35722b5410e3b29fc92dae15d4b'
+         'ce6c81ad1ad1f8b333fd6077d47abdaf'
+         '441ec084c47cddc53e592fb0cbce4edf'
+         '8ba94d83f48bf07ed146c08d99c00eef'
+         '9735e2a2e1b95ad0a55530d60d28aa79')
