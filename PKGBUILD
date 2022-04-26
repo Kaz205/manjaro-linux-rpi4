@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=ca1c34d1e375c27c034e449f8374d62fdadcfa91
+_commit=b5255b41937208b6f3409ca3cd80376c7ee3f83a
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.3
+pkgver=5.17.4
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -24,8 +24,8 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff'
         'revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff')
 
-md5sums=('4eeb19147096bcbebeb61f7d71376a20'
-         'db31cb3fd52ccf35b1fd94a44cde9bf1'
+md5sums=('8245e5719f73c56d1b1d298c64338f39'
+         'cf03d36db1202e62f3d966e5ce017655'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf'
