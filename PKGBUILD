@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=d015549873ae5fb33b26da25ecae84239bf72970
+_commit=1ed7559c702dfaee787887e46385cd94ed628cbe
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.5
+pkgver=5.17.6
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -22,15 +22,18 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         '60-linux.hook'
         '90-linux.hook'
         'revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff'
-        'revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff')
+        'revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff'
+        'logo_linux_clut224.ppm')
 
-md5sums=('25b020423fac8505d34bab05cdd8ccdd'
-         'ca09ae8d06287e866f10ef3d51163c53'
+md5sums=('3b3ce52aa85356657c3ecf49f2075cad'
+         '02b6bed368011eb181c8e42bc7e89789'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf'
          '8ba94d83f48bf07ed146c08d99c00eef'
-         '9735e2a2e1b95ad0a55530d60d28aa79')
+         '9735e2a2e1b95ad0a55530d60d28aa79'
+         '7f7ddadea6f4a7d3017380cb83b95b5e')
+)
          
 prepare() {
   cd "${srcdir}/${_srcname}"
@@ -44,6 +47,9 @@ prepare() {
   sed -i '2iexit 0' scripts/depmod.sh
   patch -Np1 -i ../revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff
   patch -Np1 -i ../revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff
+
+  # Add Manjaro Mascot for cpu core count at boot
+  cp ../logo_linux_clut224.ppm drivers/video/logo/
 }
 
 build() {
