@@ -5,11 +5,11 @@
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
 pkgbase=linux-rpi4-mainline
-_commit=1ed7559c702dfaee787887e46385cd94ed628cbe
+_commit=c2541c457fdedd9385c7a78988c4cf087f289313
 _srcname=linux-${_commit}
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.6
+pkgver=5.17.8
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
@@ -21,18 +21,17 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'linux.preset'
         '60-linux.hook'
         '90-linux.hook'
-        'revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff'
-        'revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff'
-        'logo_linux_clut224.ppm')
+#        'revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff'
+#        'revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff'
+        'logo_linux_clut224.ppm'
+        )
 
-md5sums=('3b3ce52aa85356657c3ecf49f2075cad'
-         '02b6bed368011eb181c8e42bc7e89789'
+md5sums=('7311fa0b3d1e46456ed3fdee995a8d69'
+         'b1a0133b058e6f1fd9f48c783b297380'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
          '441ec084c47cddc53e592fb0cbce4edf'
-         '8ba94d83f48bf07ed146c08d99c00eef'
-         '9735e2a2e1b95ad0a55530d60d28aa79'
-         '7f7ddadea6f4a7d3017380cb83b95b5e'
+         '7f7ddadea6f4a7d3017380cb83b95b5e')
 )
          
 prepare() {
@@ -45,8 +44,8 @@ prepare() {
 
   # don't run depmod on 'make install'. We'll do this ourselves in packaging
   sed -i '2iexit 0' scripts/depmod.sh
-  patch -Np1 -i ../revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff
-  patch -Np1 -i ../revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff
+#  patch -Np1 -i ../revert-revert_drm_atomic_helpers_remove_legacy_cursor_update_hacks.diff
+#  patch -Np1 -i ../revert-revert_drm_vc4_hvs_defer_dlist_slots_deallocation.diff
 
   # Add Manjaro Mascot for cpu core count at boot
   cp ../logo_linux_clut224.ppm drivers/video/logo/
