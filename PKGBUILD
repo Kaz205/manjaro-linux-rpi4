@@ -4,9 +4,8 @@
 # Maintainer: Dan Johansen <strit@manjaro.org>
 # Maintainer: Ray Sherwin <slick517d@gmail.com>
 
-pkgbase=linux-rpi4-mainline
-_commit=c2541c457fdedd9385c7a78988c4cf087f289313
-_srcname=linux-${_commit}
+pkgbase=linux-rpi4-kazuki
+_srcname=linux-rpi4
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
 pkgver=5.17.8
@@ -14,9 +13,9 @@ pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
-makedepends=('xmlto' 'docbook-xsl' 'kmod' 'inetutils' 'bc' 'git')
+makedepends=('kmod' 'inetutils' 'bc' 'git')
 options=('!strip')
-source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
+source=("$_srcname::git+https://github.com/Kaz205/linux#branch=5.17"
         'config'
         'linux.preset'
         '60-linux.hook'
@@ -26,7 +25,7 @@ source=("https://github.com/raspberrypi/linux/archive/${_commit}.tar.gz"
         'logo_linux_clut224.ppm'
         )
 
-md5sums=('7311fa0b3d1e46456ed3fdee995a8d69'
+md5sums=('SKIP'
          'b1a0133b058e6f1fd9f48c783b297380'
          '86d4a35722b5410e3b29fc92dae15d4b'
          'ce6c81ad1ad1f8b333fd6077d47abdaf'
@@ -37,7 +36,17 @@ md5sums=('7311fa0b3d1e46456ed3fdee995a8d69'
 prepare() {
   cd "${srcdir}/${_srcname}"
 
-  cat "${srcdir}/config" > ./.config
+  if ! [ -d clang+llvm-14.0.3-aarch64-linux-gnu ]
+  then
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.3/clang+llvm-14.0.3-aarch64-linux-gnu.tar.xz
+    tar -I xz -xf clang+llvm-14.0.3-aarch64-linux-gnu.tar.xz
+  fi
+
+  export LLVM=1
+  export PATH="clang+llvm-14.0.3-aarch64-linux-gnu/bin:$PATH"
+  export ARCH=arm64
+
+  make bcm2711_defconfig -j$(nproc --all)
 
   # add pkgrel to extraversion
   sed -ri "s|^(EXTRAVERSION =)(.*)|\1 \2-${pkgrel}|" Makefile
@@ -55,7 +64,7 @@ build() {
   cd "${srcdir}/${_srcname}"
 
   # get kernel version
-  make prepare
+  make prepare -j$(nproc --all)
 
   # load configuration
   # Configure the kernel. Replace the line below with one of your choice.
@@ -78,7 +87,7 @@ build() {
 
   #yes "" | make config
 
-  make ${MAKEFLAGS} Image modules dtbs
+  make Image modules dtbs -j$(nproc --all)
 }
 
 _package() {
@@ -86,7 +95,7 @@ _package() {
   depends=('coreutils' 'linux-firmware' 'kmod' 'initramfs' 'firmware-raspberrypi')
   optdepends=('crda: to set the correct wireless channels of your country')
   provides=('kernel26' "linux=${pkgver}")
-  conflicts=('kernel26' 'linux' 'uboot-raspberrypi')
+  conflicts=('kernel26' 'linux' 'linux-rpi4-mainline' 'uboot-raspberrypi')
   install=${pkgname}.install
   replaces=('linux-raspberrypi-latest')
 
@@ -100,7 +109,7 @@ _package() {
   _basekernel=${_basekernel%.*}
 
   mkdir -p "${pkgdir}"/{boot/overlays,usr/lib/modules}
-  make INSTALL_MOD_PATH="${pkgdir}/usr" modules_install
+  make INSTALL_MOD_PATH="${pkgdir}/usr" modules_install -j$(nproc --all)
 
   cp arch/$KARCH/boot/dts/broadcom/bcm2710-rpi-cm3.dtb "${pkgdir}/boot"
   cp arch/$KARCH/boot/dts/broadcom/bcm2711-rpi-cm4.dtb "${pkgdir}/boot"
