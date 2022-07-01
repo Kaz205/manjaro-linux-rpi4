@@ -8,14 +8,14 @@ pkgbase=linux-rpi4-kazuki
 _srcname=linux-rpi4
 _kernelname=${pkgbase#linux}
 _desc="Raspberry Pi 4 64-bit kernel"
-pkgver=5.17.9
+pkgver=5.18.8
 pkgrel=1
 arch=('aarch64')
 url="http://www.kernel.org/"
 license=('GPL2')
 makedepends=('kmod' 'inetutils' 'bc' 'git')
 options=('!strip')
-source=("$_srcname::git+https://github.com/Kaz205/linux#branch=5.17"
+source=("$_srcname::git+https://github.com/Kaz205/linux#branch=5.18"
         'config'
         'linux.preset'
         '60-linux.hook'

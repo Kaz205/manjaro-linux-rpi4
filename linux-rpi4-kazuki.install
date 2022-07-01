@@ -20,15 +20,15 @@ post_install () {
     fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "btrfs" ]]; then
    echo "===> Installing default btrfs cmdline.txt /boot..."
-   echo "rootflags=subvol=@ rootfstype=btrfs root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+   echo "rootflags=subvol=@ rootfstype=btrfs root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
    fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "ext4" ]]; then
    echo "===> Installing default ext4 cmdline.txt /boot..."
-   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
    fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "f2fs" ]]; then
    echo "===> Installing default f2fs cmdline.txt /boot..."
-   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
    fi
 
   if [ -f /boot/config.txt ]; then
@@ -42,6 +42,7 @@ post_install () {
     echo "kernel=kernel8.img" >> /boot/config.txt
     echo "arm_64bit=1" >> /boot/config.txt
     echo "disable_overscan=1" >> /boot/config.txt
+    echo "dtparam=krnbt=on" >> /boot/config.txt
     echo "" >> /boot/config.txt
     echo "#enable sound" >> /boot/config.txt
     echo "dtparam=audio=on" >> /boot/config.txt
@@ -76,15 +77,15 @@ post_upgrade () {
     fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "btrfs" ]]; then
    echo "===> Installing default btrfs cmdline.txt /boot..."
-   echo "rootflags=subvol=@ rootfstype=btrfs root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+   echo "rootflags=subvol=@ rootfstype=btrfs root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
    fi   
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "ext4" ]]; then
    echo "===> Installing default ext4 cmdline.txt /boot..."
-   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
    fi
   if [ ! -f /boot/cmdline.txt ] && [[ "$FSTYPE" == "f2fs" ]]; then
    echo "===> Installing default f2fs cmdline.txt /boot..."
-   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 kgdboc=serial0,115200 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
+   echo "root=PARTUUID=$ROOT_PART rw rootwait console=serial0,115200 console=tty3 selinux=0 quiet splash plymouth.ignore-serial-consoles smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 usbhid.mousepoll=8 audit=0" > /boot/cmdline.txt
    fi
 
   if [ -f /boot/config.txt ]; then
@@ -98,6 +99,7 @@ post_upgrade () {
     echo "kernel=kernel8.img" >> /boot/config.txt
     echo "arm_64bit=1" >> /boot/config.txt
     echo "disable_overscan=1" >> /boot/config.txt
+    echo "dtparam=krnbt=on" >> /boot/config.txt
     echo "" >> /boot/config.txt
     echo "#enable sound" >> /boot/config.txt
     echo "dtparam=audio=on" >> /boot/config.txt
