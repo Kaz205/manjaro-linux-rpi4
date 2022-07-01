@@ -34,7 +34,7 @@ md5sums=('SKIP'
 )
 
 prepare() {
-  export CLANG_VERSION=14.0.3
+  export CLANG_VERSION=14.0.6
 
   cd "${srcdir}/${_srcname}"
 
