@@ -32,18 +32,20 @@ md5sums=('SKIP'
          '441ec084c47cddc53e592fb0cbce4edf'
          '7f7ddadea6f4a7d3017380cb83b95b5e'
 )
-         
+
 prepare() {
+  export CLANG_VERSION=14.0.3
+
   cd "${srcdir}/${_srcname}"
 
-  if ! [ -d clang+llvm-14.0.3-aarch64-linux-gnu ]
+  if ! [ -d clang+llvm-$CLANG_VERSION-aarch64-linux-gnu ]
   then
-    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-14.0.3/clang+llvm-14.0.3-aarch64-linux-gnu.tar.xz
-    tar -I xz -xf clang+llvm-14.0.3-aarch64-linux-gnu.tar.xz
+    wget https://github.com/llvm/llvm-project/releases/download/llvmorg-$CLANG_VERSION/clang+llvm-$CLANG_VERSION-aarch64-linux-gnu.tar.xz
+    tar -I xz -xf clang+llvm-$CLANG_VERSION-aarch64-linux-gnu.tar.xz
   fi
 
   export LLVM=1
-  export PATH="clang+llvm-14.0.3-aarch64-linux-gnu/bin:$PATH"
+  export PATH="clang+llvm-$CLANG_VERSION-aarch64-linux-gnu/bin:$PATH"
   export ARCH=arm64
 
   make bcm2711_defconfig -j$(nproc --all)
